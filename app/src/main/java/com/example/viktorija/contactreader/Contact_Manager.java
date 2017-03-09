@@ -22,10 +22,11 @@ import java.util.List;
 public class Contact_Manager extends Activity {
 
     EditText nameTxt, phoneTxt, emailTxt, addressTxt;
-
+    Button clearBtn;
 
     List<Contact> Contacts = new ArrayList<Contact>();
     ListView contactListView;
+
 
     DatabaseHandler dbHandler;
 
@@ -48,6 +49,7 @@ public class Contact_Manager extends Activity {
 
         contactListView = (ListView) findViewById(R.id.listView);
 
+
         TabHost tabHost = (TabHost) findViewById(R.id.host);
 
         tabHost.setup();
@@ -62,6 +64,18 @@ public class Contact_Manager extends Activity {
                 tabSpec.setIndicator("Contact's");
                 tabHost.addTab(tabSpec);
 
+
+        final Button clearBtn = (Button) findViewById(R.id.ClearButton);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nameTxt.setText("");
+                phoneTxt.setText("");
+                emailTxt.setText("");
+                addressTxt.setText("");
+
+            }
+        });
                 final Button addBtn = (Button) findViewById(R.id.Cbutton);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +92,11 @@ public class Contact_Manager extends Activity {
                     populateList();
                     Toast.makeText(getApplicationContext(), nameTxt.getText().toString() + "Id = "+ dbHandler.getContactCount() + "contact has been added to your list", Toast.LENGTH_SHORT).show();
                 }
+
             }
+
         });
+
 
         nameTxt.addTextChangedListener(new TextWatcher() {
             @Override
@@ -116,7 +133,7 @@ public class Contact_Manager extends Activity {
     }
 
 
-
+/* dabar nenaudojams
     private void addContact(int id, String name, String number, String email, String address) {
 
         if(email.isEmpty()){
@@ -130,7 +147,7 @@ public class Contact_Manager extends Activity {
 
          //after
         Contacts.add(new Contact(id, name, number, email, address));
-    }
+    }*/
 
     private class ContactListAdapter extends ArrayAdapter<Contact> {
         public ContactListAdapter() {
@@ -143,7 +160,7 @@ public class Contact_Manager extends Activity {
                     view = getLayoutInflater().inflate(R.layout.listview_item, parent, false);
 
 
-                Contact currentContact = Contacts.get(position);
+                final Contact currentContact = Contacts.get(position);
 
                 TextView name = (TextView) view.findViewById(R.id.contactName);
                 name.setText(currentContact.getName());
@@ -157,6 +174,21 @@ public class Contact_Manager extends Activity {
                 TextView address = (TextView) view.findViewById(R.id.contactAddress);
                 address.setText(currentContact.getAddress());
 
+
+            Button deleteButton = (Button) view.findViewById(R.id.contactDelete);
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dbHandler.deleteContact(dbHandler.getContact(currentContact.getId()));
+                        populateList();
+
+                }
+            });
+
+
+
+
+
                  return view;
 
 
@@ -165,6 +197,10 @@ public class Contact_Manager extends Activity {
             }
 
         }
+    private void deleteContact(){
+
+
+    }
 
 
 

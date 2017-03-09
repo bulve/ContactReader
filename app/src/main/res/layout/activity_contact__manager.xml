@@ -111,6 +111,17 @@
                         android:layout_width="match_parent"
 
                         android:background="@color/blue"/>
+                    <Button
+                        android:text="Clear"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ClearButton"
+                        android:contentDescription="It will clear all Contacts"
+                        android:layout_marginTop="42dp"
+                        android:layout_below="@+id/Cbutton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="match_parent"
+
+                        android:background="@color/blue"/>
                 </LinearLayout>
 
                 <LinearLayout
