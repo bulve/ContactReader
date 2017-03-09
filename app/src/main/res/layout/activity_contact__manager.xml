@@ -109,7 +109,7 @@
                         android:layout_below="@+id/editTextAddress"
                         android:layout_centerHorizontal="true"
                         android:layout_width="match_parent"
-                        
+
                         android:background="@color/blue"/>
                 </LinearLayout>
 

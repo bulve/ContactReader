@@ -1,17 +1,14 @@
 package com.example.viktorija.contactreader;
 
-import android.provider.ContactsContract;
-import android.support.annotation.MainThread;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+
+
+import android.app.Activity;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,15 +16,19 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Contact_Manager extends AppCompatActivity {
+public class Contact_Manager extends Activity {
 
     EditText nameTxt, phoneTxt, emailTxt, addressTxt;
+
+
     List<Contact> Contacts = new ArrayList<Contact>();
     ListView contactListView;
+
+    DatabaseHandler dbHandler;
+
 
 
     @Override
@@ -35,8 +36,8 @@ public class Contact_Manager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact__manager);
 
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //this.setContentView(R.layout.activity_contact__manager);
+        dbHandler = new DatabaseHandler(this);
+
 
 
 
@@ -66,9 +67,13 @@ public class Contact_Manager extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(nameTxt.getText().toString().isEmpty() && phoneTxt.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Contact not created (missing contact name and number)", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Contact not created (missing contact name and/or number)", Toast.LENGTH_SHORT).show();
                 }else {
-                    addContact(nameTxt.getText().toString(), phoneTxt.getText().toString(), emailTxt.getText().toString(), addressTxt.getText().toString());
+                    Contact contact = new Contact(0, String.valueOf(nameTxt.getText()), String.valueOf(phoneTxt.getText()),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()));
+                   // addContact(0, nameTxt.getText().toString(), phoneTxt.getText().toString(), emailTxt.getText().toString(), addressTxt.getText().toString());
+
+                    dbHandler.addContact(contact);
+                    Contacts.add(contact);
                     populateList();
                     Toast.makeText(getApplicationContext(), nameTxt.getText().toString() + "contact has been added to your list", Toast.LENGTH_SHORT).show();
                 }
@@ -91,6 +96,19 @@ public class Contact_Manager extends AppCompatActivity {
 
             }
         });
+/*      List<Contact> allContactsAvalable = dbHandler.getAllContacts();
+        int countContact = dbHandler.getContactCount();
+        for(int i= 0; i < countContact; i++){
+            Contacts.add(allContactsAvalable.get(i));
+
+        }
+        if(!allContactsAvalable.isEmpty())
+            populateList();*/
+
+    }
+
+    private void databaseCreate(){
+
     }
 
     private void populateList(){
@@ -98,14 +116,21 @@ public class Contact_Manager extends AppCompatActivity {
         contactListView.setAdapter(adapter);
     }
 
-    private void addContact(String name, String number, String email, String address) {
+
+
+    private void addContact(int id, String name, String number, String email, String address) {
+
         if(email.isEmpty()){
             email = "No email";
         }
         if(address.isEmpty()){
             address = "No address";
         }
-        Contacts.add(new Contact(name, number, email, address));
+            //after
+        Contact contact = new Contact(id, name, number, email, address);
+
+         //after
+        Contacts.add(new Contact(id, name, number, email, address));
     }
 
     private class ContactListAdapter extends ArrayAdapter<Contact> {
@@ -117,6 +142,7 @@ public class Contact_Manager extends AppCompatActivity {
         public View getView(int position, View view, ViewGroup parent){
             if(view == null)
                     view = getLayoutInflater().inflate(R.layout.listview_item, parent, false);
+
 
                 Contact currentContact = Contacts.get(position);
 
@@ -132,11 +158,16 @@ public class Contact_Manager extends AppCompatActivity {
                 TextView address = (TextView) view.findViewById(R.id.contactAddress);
                 address.setText(currentContact.getAddress());
 
-                return view;
+                 return view;
+
+
+
 
             }
 
         }
+
+
 
 
 
