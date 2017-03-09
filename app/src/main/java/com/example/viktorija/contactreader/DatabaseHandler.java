@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -32,7 +33,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*String CREATE_CONTACTS_TABLE = "CREATE TABLE ID NOT EXISTS" +
+        /*
+        Bandyta bet nesuveike ;/
+
+        String CREATE_CONTACTS_TABLE = "CREATE TABLE ID NOT EXISTS" +
                 TABLE_CONTACTS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_name
                 + " TEXT," + COLUMN_number + " INTEGER" + COLUMN_email + " TEXT" + COLUMN_address + " TEXT" +")";
@@ -45,16 +49,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 COLUMN_email + " TEXT, " +
                 COLUMN_address + " TEXT " +
                 ")");*/
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+
+        //sitas veikia
+
         db.execSQL("create table " + TABLE_CONTACTS + "("
                 + "id integer primary key autoincrement,"
                 + "name text,"
                 + "number integer," // added a ','
                 + "email text,"
                 + "address text" + ");");
-
-
-
 
     }
 
@@ -153,5 +156,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 // return contact list
         return contacts;
     }
+
 
 }

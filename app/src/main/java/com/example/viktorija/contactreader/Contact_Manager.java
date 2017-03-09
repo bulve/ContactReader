@@ -36,8 +36,8 @@ public class Contact_Manager extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact__manager);
 
-        dbHandler = new DatabaseHandler(this);
 
+        dbHandler = new DatabaseHandler(getApplicationContext());
 
 
 
@@ -69,13 +69,14 @@ public class Contact_Manager extends Activity {
                 if(nameTxt.getText().toString().isEmpty() && phoneTxt.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Contact not created (missing contact name and/or number)", Toast.LENGTH_SHORT).show();
                 }else {
-                    Contact contact = new Contact(0, String.valueOf(nameTxt.getText()), String.valueOf(phoneTxt.getText()),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()));
+
+                    Contact contact = new Contact(dbHandler.getContactCount(), String.valueOf(nameTxt.getText()), String.valueOf(phoneTxt.getText()),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()));
                    // addContact(0, nameTxt.getText().toString(), phoneTxt.getText().toString(), emailTxt.getText().toString(), addressTxt.getText().toString());
 
                     dbHandler.addContact(contact);
                     Contacts.add(contact);
                     populateList();
-                    Toast.makeText(getApplicationContext(), nameTxt.getText().toString() + "contact has been added to your list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), nameTxt.getText().toString() + "Id = "+ dbHandler.getContactCount() + "contact has been added to your list", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -96,20 +97,18 @@ public class Contact_Manager extends Activity {
 
             }
         });
-/*      List<Contact> allContactsAvalable = dbHandler.getAllContacts();
+     List<Contact> allContactsAvalable = dbHandler.getAllContacts();
         int countContact = dbHandler.getContactCount();
         for(int i= 0; i < countContact; i++){
             Contacts.add(allContactsAvalable.get(i));
 
         }
         if(!allContactsAvalable.isEmpty())
-            populateList();*/
+            populateList();
 
     }
 
-    private void databaseCreate(){
 
-    }
 
     private void populateList(){
         ArrayAdapter<Contact> adapter = new ContactListAdapter();

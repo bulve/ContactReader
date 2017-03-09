@@ -16,7 +16,7 @@ public class Contact extends Activity{
     }
 
     public Contact( int id, String name, String number, String email, String address){
-
+        this.id = id;
         this.name = name;
         this.number = number;
         this.email = email;
