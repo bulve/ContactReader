@@ -93,7 +93,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Contact contact = new Contact(Integer.parseInt(
                     cursor.getString(0)),
                     cursor.getString(1),
-                    cursor.getString(2),
+                    cursor.getInt(2),
                     cursor.getString(3),
                     cursor.getString(4));
         db.close();
@@ -122,7 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        values.put(COLUMN_ID, contact.getName());
+        //values.put(COLUMN_ID, contact.getName());
         values.put(COLUMN_name, contact.getName());
         values.put(COLUMN_number, contact.getNumber());
         values.put(COLUMN_email, contact.getEmail());
@@ -146,7 +146,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             do {
                 Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
-                        cursor.getString(2),
+                        cursor.getInt(2),
                         cursor.getString(3),
                         cursor.getString(4));
                 contacts.add(contact);

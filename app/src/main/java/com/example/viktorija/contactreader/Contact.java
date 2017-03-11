@@ -8,14 +8,15 @@ import android.app.Activity;
 
 public class Contact extends Activity{
 
-    private String name, number, email, address;
+    private String name, email, address;
+    private int number;
     private int id;
 
     public Contact(){
 
     }
 
-    public Contact( int id, String name, String number, String email, String address){
+    public Contact( int id, String name, int number, String email, String address){
         this.id = id;
         this.name = name;
         this.number = number;
@@ -39,7 +40,7 @@ public class Contact extends Activity{
         this.address = address;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -50,7 +51,7 @@ public class Contact extends Activity{
     public String getName(){
         return name;
     }
-    public String getNumber(){
+    public int getNumber(){
         return number;
     }
     public String getEmail(){

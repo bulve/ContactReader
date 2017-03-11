@@ -4,6 +4,7 @@ package com.example.viktorija.contactreader;
 
 import android.app.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class Contact_Manager extends Activity {
 
@@ -84,7 +87,7 @@ public class Contact_Manager extends Activity {
                     Toast.makeText(getApplicationContext(), "Contact not created (missing contact name and/or number)", Toast.LENGTH_SHORT).show();
                 }else {
 
-                    Contact contact = new Contact(dbHandler.getContactCount(), String.valueOf(nameTxt.getText()), String.valueOf(phoneTxt.getText()),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()));
+                    Contact contact = new Contact(dbHandler.getContactCount(), String.valueOf(nameTxt.getText()), Integer.valueOf(String.valueOf(phoneTxt.getText())),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()));
                    // addContact(0, nameTxt.getText().toString(), phoneTxt.getText().toString(), emailTxt.getText().toString(), addressTxt.getText().toString());
 
                     dbHandler.addContact(contact);
@@ -166,7 +169,7 @@ public class Contact_Manager extends Activity {
                 name.setText(currentContact.getName());
 
                 TextView number = (TextView) view.findViewById(R.id.contactNumber);
-                number.setText(currentContact.getNumber());
+                number.setText(String.valueOf(currentContact.getNumber()));
 
                 TextView email = (TextView) view.findViewById(R.id.contactEmail);
                 email.setText(currentContact.getEmail());
@@ -174,33 +177,31 @@ public class Contact_Manager extends Activity {
                 TextView address = (TextView) view.findViewById(R.id.contactAddress);
                 address.setText(currentContact.getAddress());
 
-
-            Button deleteButton = (Button) view.findViewById(R.id.contactDelete);
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dbHandler.deleteContact(dbHandler.getContact(currentContact.getId()));
+                Button deleteButton = (Button) view.findViewById(R.id.contactDelete);
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dbHandler.deleteContact(dbHandler.getContact(currentContact.getId()));
                         populateList();
 
-                }
-            });
+                    }
+                });
+                Button viewContact = (Button) view.findViewById(R.id.viewContact);
+                viewContact.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(),ContacViewFrame.class);
+                        int ContactId = Integer.valueOf(currentContact.getId());
 
-
-
-
-
-                 return view;
-
-
-
-
+                        intent.putExtra("ContactIdFromManager", ContactId);
+                        startActivity(intent);
+                    }
+                });
+            return view;
             }
 
         }
-    private void deleteContact(){
 
-
-    }
 
 
 
