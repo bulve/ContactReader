@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.widget.Toast;
 
 
@@ -16,14 +17,15 @@ import java.util.List;
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 3;
-    private static final String DATABASE_NAME = "AllContact",
+    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = "ContactWithImage",
             TABLE_CONTACTS = "ListContact",
             COLUMN_ID = "id",
             COLUMN_name = "name",
             COLUMN_number = "number",
             COLUMN_email = "email",
-            COLUMN_address = "address";
+            COLUMN_address = "address",
+            COLUMN_imageUri = "imageUri";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -52,12 +54,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //sitas veikia
 
+        /* senoji versija be image
+             DATABASE_NAME = "AllContact",
+             TABLE_CONTACTS = "ListContact",
+                db.execSQL("create table " + TABLE_CONTACTS + "("
+                + "id integer primary key autoincrement,"
+                + "name text,"
+                + "number integer,"
+                + "email text,"
+                + "address text" + ");"); */
+
         db.execSQL("create table " + TABLE_CONTACTS + "("
                 + "id integer primary key autoincrement,"
                 + "name text,"
-                + "number integer," // added a ','
+                + "number integer,"
                 + "email text,"
-                + "address text" + ");");
+                + "address text,"
+                + "imageUri text" + ");");
 
     }
 
@@ -75,6 +88,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COLUMN_number, contact.getNumber());
         values.put(COLUMN_email, contact.getEmail());
         values.put(COLUMN_address, contact.getAddress());
+        //added for image
+        values.put(COLUMN_imageUri, contact.getImageUri().toString());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -86,7 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Contact getContact(int id){
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{COLUMN_ID, COLUMN_name, COLUMN_number, COLUMN_address, COLUMN_email}, COLUMN_ID + "=?", new String[] {String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{COLUMN_ID, COLUMN_name, COLUMN_number, COLUMN_email, COLUMN_address, COLUMN_imageUri}, COLUMN_ID + "=?", new String[] {String.valueOf(id)}, null, null, null, null);
         if(cursor != null)
             cursor.moveToFirst();
 
@@ -95,7 +110,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(1),
                     cursor.getInt(2),
                     cursor.getString(3),
-                    cursor.getString(4));
+                    cursor.getString(4),
+                    Uri.parse(cursor.getString(5)));
         db.close();
         cursor.close();
             return contact;
@@ -122,11 +138,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        //values.put(COLUMN_ID, contact.getName());
+
         values.put(COLUMN_name, contact.getName());
         values.put(COLUMN_number, contact.getNumber());
         values.put(COLUMN_email, contact.getEmail());
         values.put(COLUMN_address, contact.getAddress());
+        //add image Uri ?
 
         return db.update(TABLE_CONTACTS, values, COLUMN_ID + "=?", new String[] {String.valueOf(contact.getId()) });
 
@@ -148,7 +165,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         cursor.getString(1),
                         cursor.getInt(2),
                         cursor.getString(3),
-                        cursor.getString(4));
+                        cursor.getString(4),
+                        Uri.parse(cursor.getString(5)));
                 contacts.add(contact);
             } while (cursor.moveToNext());
         }

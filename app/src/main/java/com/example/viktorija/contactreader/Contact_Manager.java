@@ -5,6 +5,7 @@ package com.example.viktorija.contactreader;
 import android.app.Activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,10 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +33,11 @@ public class Contact_Manager extends Activity {
     EditText nameTxt, phoneTxt, emailTxt, addressTxt;
     Button clearBtn;
 
+    ImageView contactImageView;
     List<Contact> Contacts = new ArrayList<Contact>();
     ListView contactListView;
+    Uri contactImageUri = Uri.parse("android.resource://com.example.viktorija.contactreader/drawable/user.png");
+
 
 
     DatabaseHandler dbHandler;
@@ -51,7 +60,7 @@ public class Contact_Manager extends Activity {
         addressTxt = (EditText) findViewById(R.id.editTextAddress);
 
         contactListView = (ListView) findViewById(R.id.listView);
-
+        contactImageView = (ImageView) findViewById(R.id.imageViewContact) ;
 
         TabHost tabHost = (TabHost) findViewById(R.id.host);
 
@@ -66,7 +75,15 @@ public class Contact_Manager extends Activity {
                 tabSpec.setContent(R.id.tabContact);
                 tabSpec.setIndicator("Contact's");
                 tabHost.addTab(tabSpec);
-
+        contactImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select image for your contact"), 1);
+            }
+        });
 
         final Button clearBtn = (Button) findViewById(R.id.ClearButton);
         clearBtn.setOnClickListener(new View.OnClickListener() {
@@ -87,13 +104,13 @@ public class Contact_Manager extends Activity {
                     Toast.makeText(getApplicationContext(), "Contact not created (missing contact name and/or number)", Toast.LENGTH_SHORT).show();
                 }else {
 
-                    Contact contact = new Contact(dbHandler.getContactCount(), String.valueOf(nameTxt.getText()), Integer.valueOf(String.valueOf(phoneTxt.getText())),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()));
+                    Contact contact = new Contact(dbHandler.getContactCount(), String.valueOf(nameTxt.getText()), Integer.valueOf(String.valueOf(phoneTxt.getText())),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()), contactImageUri);
                    // addContact(0, nameTxt.getText().toString(), phoneTxt.getText().toString(), emailTxt.getText().toString(), addressTxt.getText().toString());
 
                     dbHandler.addContact(contact);
                     Contacts.add(contact);
                     populateList();
-                    Toast.makeText(getApplicationContext(), nameTxt.getText().toString() + "Id = "+ dbHandler.getContactCount() + "contact has been added to your list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), nameTxt.getText().toString() + "contact has been added to your list", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -117,20 +134,29 @@ public class Contact_Manager extends Activity {
 
             }
         });
-     List<Contact> allContactsAvalable = dbHandler.getAllContacts();
+       List<Contact> allContactsAvalable = dbHandler.getAllContacts();
         int countContact = dbHandler.getContactCount();
         for(int i= 0; i < countContact; i++){
             Contacts.add(allContactsAvalable.get(i));
-
         }
+
         if(!allContactsAvalable.isEmpty())
             populateList();
 
     }
 
+    public void onActivityResult(int requestCode, int respondCode, Intent data){
+        if(respondCode == RESULT_OK){
+            if(requestCode == 1){
+                contactImageUri = data.getData();
+                contactImageView.setImageURI(data.getData());
+            }
+        }
+    }
 
 
-    private void populateList(){
+
+    public void populateList(){
         ArrayAdapter<Contact> adapter = new ContactListAdapter();
         contactListView.setAdapter(adapter);
     }
@@ -171,30 +197,37 @@ public class Contact_Manager extends Activity {
                 TextView number = (TextView) view.findViewById(R.id.contactNumber);
                 number.setText(String.valueOf(currentContact.getNumber()));
 
-                TextView email = (TextView) view.findViewById(R.id.contactEmail);
+                /*TextView email = (TextView) view.findViewById(R.id.contactEmail);
                 email.setText(currentContact.getEmail());
 
                 TextView address = (TextView) view.findViewById(R.id.contactAddress);
-                address.setText(currentContact.getAddress());
+                address.setText(currentContact.getAddress());*/
+                ImageView contactImageView = (ImageView) view.findViewById(R.id.imageViewContactListView);
+                contactImageView.setImageURI(currentContact.getImageUri());
 
-                Button deleteButton = (Button) view.findViewById(R.id.contactDelete);
-                deleteButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dbHandler.deleteContact(dbHandler.getContact(currentContact.getId()));
-                        populateList();
 
-                    }
-                });
-                Button viewContact = (Button) view.findViewById(R.id.viewContact);
+            RelativeLayout viewContact = (RelativeLayout) view.findViewById(R.id.listViewRealitiveLayout);
+
                 viewContact.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),ContacViewFrame.class);
+                        Intent intent = new Intent(getApplicationContext(),InfoContact.class);
                         int ContactId = Integer.valueOf(currentContact.getId());
 
                         intent.putExtra("ContactIdFromManager", ContactId);
                         startActivity(intent);
+                    }
+                });
+                viewContact.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(),UpdateContact.class);
+                        int ContactId = Integer.valueOf(currentContact.getId());
+
+                        intent.putExtra("ContactIdFromManager", ContactId);
+                        startActivity(intent);
+
+                        return false;
                     }
                 });
             return view;

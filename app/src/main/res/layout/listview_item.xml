@@ -1,54 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/listViewLinearLayout"
-    android:orientation="vertical" android:layout_width="match_parent"
-
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listViewRealitiveLayout"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin">
 
     <TextView
-        android:text="Contact name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/contactName"
-        android:textSize="15sp"
-
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:text="Number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Contact name"
+        android:textSize="20dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageViewContactListView"
+        android:layout_toEndOf="@+id/imageViewContactListView"
+        android:layout_marginTop="12dp" />
+
+    <TextView
         android:id="@+id/contactNumber"
-        android:textSize="12sp"
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:text="Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/contactEmail"
-        android:textSize="12sp"
-        android:layout_margin="5dp" />
+        android:text="Number"
+        android:textSize="20dp"
+        android:layout_marginBottom="13dp"
+        android:layout_alignBottom="@+id/imageViewContactListView"
+        android:layout_alignLeft="@+id/contactName"
+        android:layout_alignStart="@+id/contactName" />
 
-    <TextView
-        android:text="Address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/contactAddress"
-        android:textSize="12sp"
-        android:layout_margin="5dp" />
+    <ImageView
+        android:id="@+id/imageViewContactListView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/user" />
 
-    <Button
-        android:text="Delete Contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/contactDelete"
-        />
-    <Button
-        android:text="View contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/viewContact"
-        android:onClick="viewContactInfo" />
-</LinearLayout>
+
+</RelativeLayout>

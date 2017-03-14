@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_contact__manager"
     android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/host">
+        
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,6 +38,15 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/imageViewContact"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/user"
+                        app:srcCompat="@drawable/user" />
+
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -43,12 +54,12 @@
                         android:ems="10"
                         android:id="@+id/editTextName"
                         android:hint="Person name"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:layout_below="@+id/textView"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:clickable="false"
                         android:cursorVisible="false" />
 
@@ -57,26 +68,26 @@
                         android:layout_height="wrap_content"
                         android:inputType="phone"
                         android:ems="10"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/editTextNumber"
                         android:hint="Phone Number"
                         android:layout_below="@+id/editTextName"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="20dp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/editTextEmail"
                         android:hint="Email"
                         android:layout_below="@+id/editTextNumber"
                         android:layout_alignParentRight="false"
                         android:layout_alignParentEnd="false"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="20dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
@@ -89,10 +100,10 @@
                         android:ems="10"
                         android:layout_below="@+id/editTextEmail"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/editTextAddress"
                         android:hint="Address"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="20dp"
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentStart="true"
@@ -102,10 +113,10 @@
 
                     <Button
                         android:text="Create"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:id="@+id/Cbutton"
                         android:contentDescription="It will create a new Contact"
-                        android:layout_marginTop="42dp"
+                        android:layout_margin="10dp"
                         android:layout_below="@+id/editTextAddress"
                         android:layout_centerHorizontal="true"
                         android:layout_width="match_parent"
@@ -113,10 +124,10 @@
                         android:background="@color/blue"/>
                     <Button
                         android:text="Clear"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:id="@+id/ClearButton"
                         android:contentDescription="It will clear all Contacts"
-                        android:layout_marginTop="42dp"
+                        android:layout_margin="10dp"
                         android:layout_below="@+id/Cbutton"
                         android:layout_centerHorizontal="true"
                         android:layout_width="match_parent"

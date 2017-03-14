@@ -1,6 +1,9 @@
 package com.example.viktorija.contactreader;
 
 import android.app.Activity;
+import android.net.Uri;
+
+
 
 /**
  * Created by Viktorija on 2016-11-10.
@@ -9,6 +12,7 @@ import android.app.Activity;
 public class Contact extends Activity{
 
     private String name, email, address;
+    private Uri image;
     private int number;
     private int id;
 
@@ -16,12 +20,13 @@ public class Contact extends Activity{
 
     }
 
-    public Contact( int id, String name, int number, String email, String address){
+    public Contact( int id, String name, int number, String email, String address, Uri image){
         this.id = id;
         this.name = name;
         this.number = number;
         this.email = email;
         this.address = address;
+        this.image = image;
     }
 
     public int getId() {
@@ -59,5 +64,12 @@ public class Contact extends Activity{
     }
     public String getAddress(){
         return address;
+    }
+
+    public Uri getImageUri(){
+        return image;
+    }
+    public void setImageUri(Uri image){
+        this.image = image;
     }
 }
