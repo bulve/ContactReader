@@ -5,6 +5,7 @@ package com.example.viktorija.contactreader;
 import android.app.Activity;
 
 import android.content.Intent;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -67,7 +68,8 @@ public class Contact_Manager extends Activity {
         TabHost.TabSpec
                 tabSpec = tabHost.newTabSpec("contact");
                 tabSpec.setContent(R.id.tabContact);
-                tabSpec.setIndicator("Contact's");
+                tabSpec.setIndicator("Contact's", getResources().getDrawable(R.color.editTextColor));
+
                 tabHost.addTab(tabSpec);
 
                 tabSpec = tabHost.newTabSpec("creator");
@@ -105,7 +107,6 @@ public class Contact_Manager extends Activity {
                 if(nameTxt.getText().toString().isEmpty() && phoneTxt.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Contact not created (missing contact name and/or number)", Toast.LENGTH_SHORT).show();
                 }else {
-
                     Contact contact = new Contact(dbHandler.getContactCount(), String.valueOf(nameTxt.getText()), Integer.valueOf(String.valueOf(phoneTxt.getText())),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()), contactImageUri);
 
 
@@ -113,37 +114,20 @@ public class Contact_Manager extends Activity {
                     dbHandler.addContact(contact);
                     Contacts.add(contact);
                     populateList();
-                    Toast.makeText(getApplicationContext(), nameTxt.getText().toString() + "contact has been added to your list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "New contact " + nameTxt.getText().toString() + " has been added to your list", Toast.LENGTH_SHORT).show();
                 }
 
             }
 
         });
 
-
-        nameTxt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                addBtn.setEnabled(!nameTxt.getText().toString().trim().isEmpty());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-       List<Contact> allContactsAvalable = dbHandler.getAllContacts();
+       List<Contact> allContactsAvailable = dbHandler.getAllContacts();
         int countContact = dbHandler.getContactCount();
         for(int i= 0; i < countContact; i++){
-            Contacts.add(allContactsAvalable.get(i));
+            Contacts.add(allContactsAvailable.get(i));
         }
 
-        if(!allContactsAvalable.isEmpty())
+        if(!allContactsAvailable.isEmpty())
             populateList();
 
     }
@@ -169,7 +153,7 @@ public class Contact_Manager extends Activity {
     private void addContact(int id, String name, String number, String email, String address) {
 
         if(email.isEmpty()){
-            email = "No email";
+            email  = "No email";
         }
         if(address.isEmpty()){
             address = "No address";

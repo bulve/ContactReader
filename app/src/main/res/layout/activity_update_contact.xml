@@ -13,6 +13,18 @@
     android:orientation="vertical"
     tools:context="com.example.viktorija.contactreader.Contact_Manager">
 
+        <Button
+            android:id="@+id/DeleteContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/buttonColor"
+            android:text="Delete Contact" />
+
         <ImageView
             android:id="@+id/imageUriOnUpdate"
             android:layout_width="match_parent"
@@ -31,6 +43,8 @@
             android:ems="8"
             android:textSize="20dp"
             android:id="@+id/ContactNameUpdate"
+            android:backgroundTint="@color/editTextColor"
+            android:cursorVisible="false"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -54,6 +68,8 @@
             android:ems="8"
             android:textSize="20dp"
             android:id="@+id/ContactNumberUpdate"
+            android:backgroundTint="@color/editTextColor"
+            android:cursorVisible="false"
             android:layout_below="@+id/ContactNameUpdate"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -76,6 +92,8 @@
             android:ems="8"
             android:textSize="20dp"
             android:id="@+id/ContactEmailUpdate"
+            android:backgroundTint="@color/editTextColor"
+            android:cursorVisible="false"
             android:layout_below="@+id/ContactNumberUpdate"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -99,7 +117,8 @@
             android:ems="8"
             android:textSize="20dp"
             android:id="@+id/ContactAddressUpdate"
-
+            android:backgroundTint="@color/editTextColor"
+            android:cursorVisible="false"
             android:layout_below="@+id/ContactEmailUpdate"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -115,39 +134,30 @@
             android:layout_alignParentStart="true"
             />
 
-        <Button
-            android:text="Delete Contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/DeleteContact"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-        <Button
-            android:text="Back Button need value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/BackButton"
-            android:layout_above="@+id/DeleteContact"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:text="Update Contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/UpdateButton"
-            android:layout_above="@+id/BackButton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/UpdateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/buttonColor"
+                    android:text="Update Contact"
+                    android:layout_above="@+id/BackButton"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="7dp" />
 
-
+                <Button
+                    android:id="@+id/BackButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/buttonColor"
+                    android:text="Back "
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+        </RelativeLayout>
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -79,11 +80,16 @@ public class InfoContact extends Activity {
             contact_address.setVisibility(View.GONE);
         }
 
-
-
-
-
-
+        contact_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("geo:0,0?q=" + Uri.encode(contact.getAddress()));
+                //String uri = "http://maps.google.com/maps?saddr="+ contact.getAddress();
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, uri);
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
+            }
+        });
 
 
         contact_number.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +97,14 @@ public class InfoContact extends Activity {
             public void onClick(View v) {
                 String number = contact_number.getText().toString();
                 phoneCall(number);
+            }
+        });
+        Button backButton = (Button) findViewById(R.id.BackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Contact_Manager.class);
+                startActivity(intent);
             }
         });
 
