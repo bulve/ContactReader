@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_contact_data"
+    android:background="@drawable/abstrac"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.viktorija.contactreader.Contact_Manager"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageUriOnInfo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/useruser"
+        android:layout_margin="20dp"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Contact name"
+        android:ems="8"
+        android:textSize="20dp"
+        android:layout_margin="20dp"
+        android:id="@+id/ContactNameInfo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:text="Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewForContactName"
+        android:textSize="20dp"
+        android:layout_alignBaseline="@+id/ContactNameInfo"
+        android:layout_alignBottom="@+id/ContactNameInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text="Contact name"
+        android:ems="8"
+        android:textSize="20dp"
+        android:layout_margin="20dp"
+        android:id="@+id/ContactNumberInfo"
+        android:layout_below="@+id/ContactNameInfo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:text="Number: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewForContactNumber"
+        android:textSize="20dp"
+        android:layout_alignBaseline="@+id/ContactNumberInfo"
+        android:layout_alignBottom="@+id/ContactEmailInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:text="Contact Email"
+        android:ems="8"
+        android:textSize="20dp"
+        android:layout_margin="20dp"
+        android:id="@+id/ContactEmailInfo"
+        android:layout_below="@+id/ContactNumberInfo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:text="Email: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewForContactEmail"
+        android:textSize="20dp"
+        android:layout_alignBaseline="@+id/ContactEmailInfo"
+        android:layout_alignBottom="@+id/ContactAddressInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:text="Contact Address"
+        android:ems="8"
+        android:textSize="20dp"
+        android:layout_margin="20dp"
+        android:id="@+id/ContactAddressInfo"
+        android:layout_below="@+id/ContactEmailInfo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:text="Address: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewForContactAddress"
+        android:textSize="20dp"
+        android:layout_alignBaseline="@+id/ContactAddressInfo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+        </RelativeLayout>
+
+
+
+
+
+
+
+</LinearLayout>

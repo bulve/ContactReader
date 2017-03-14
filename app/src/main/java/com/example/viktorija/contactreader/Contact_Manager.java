@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
@@ -31,11 +30,11 @@ import java.util.List;
 public class Contact_Manager extends Activity {
 
     EditText nameTxt, phoneTxt, emailTxt, addressTxt;
-    Button clearBtn;
 
     ImageView contactImageView;
     List<Contact> Contacts = new ArrayList<Contact>();
     ListView contactListView;
+
     Uri contactImageUri = Uri.parse("android.resource://com.example.viktorija.contactreader/drawable/user.png");
 
 
@@ -66,15 +65,18 @@ public class Contact_Manager extends Activity {
 
         tabHost.setup();
         TabHost.TabSpec
+                tabSpec = tabHost.newTabSpec("contact");
+                tabSpec.setContent(R.id.tabContact);
+                tabSpec.setIndicator("Contact's");
+                tabHost.addTab(tabSpec);
+
                 tabSpec = tabHost.newTabSpec("creator");
                 tabSpec.setContent(R.id.tabCreator);
                 tabSpec.setIndicator("Creator");
                 tabHost.addTab(tabSpec);
 
-                tabSpec = tabHost.newTabSpec("contact");
-                tabSpec.setContent(R.id.tabContact);
-                tabSpec.setIndicator("Contact's");
-                tabHost.addTab(tabSpec);
+
+
         contactImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +107,8 @@ public class Contact_Manager extends Activity {
                 }else {
 
                     Contact contact = new Contact(dbHandler.getContactCount(), String.valueOf(nameTxt.getText()), Integer.valueOf(String.valueOf(phoneTxt.getText())),  String.valueOf(emailTxt.getText()),  String.valueOf(addressTxt.getText()), contactImageUri);
-                   // addContact(0, nameTxt.getText().toString(), phoneTxt.getText().toString(), emailTxt.getText().toString(), addressTxt.getText().toString());
+
+
 
                     dbHandler.addContact(contact);
                     Contacts.add(contact);
@@ -202,8 +205,10 @@ public class Contact_Manager extends Activity {
 
                 TextView address = (TextView) view.findViewById(R.id.contactAddress);
                 address.setText(currentContact.getAddress());*/
-                ImageView contactImageView = (ImageView) view.findViewById(R.id.imageViewContactListView);
-                contactImageView.setImageURI(currentContact.getImageUri());
+
+                //Seting up image on the  list view
+                //ImageView contactImageView = (ImageView) view.findViewById(R.id.imageViewContactListView);
+               // contactImageView.setImageURI(currentContact.getImageUri());
 
 
             RelativeLayout viewContact = (RelativeLayout) view.findViewById(R.id.listViewRealitiveLayout);

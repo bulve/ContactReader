@@ -89,7 +89,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COLUMN_email, contact.getEmail());
         values.put(COLUMN_address, contact.getAddress());
         //added for image
-        values.put(COLUMN_imageUri, contact.getImageUri().toString());
+        values.put(COLUMN_imageUri, String.valueOf(contact.getImageUri()));
 
         SQLiteDatabase db = this.getWritableDatabase();
 

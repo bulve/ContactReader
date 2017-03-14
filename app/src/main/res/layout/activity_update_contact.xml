@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_contact_data"
+    android:background="@drawable/abstrac"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.viktorija.contactreader.Contact_Manager">
+
+        <ImageView
+            android:id="@+id/imageUriOnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/useruser"
+            android:layout_margin="10dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Contact name"
+            android:ems="8"
+            android:textSize="20dp"
+            android:id="@+id/ContactNameUpdate"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:text="Name:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewForContactName"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/ContactNameUpdate"
+            android:layout_alignBottom="@+id/ContactNameUpdate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="Contact name"
+            android:ems="8"
+            android:textSize="20dp"
+            android:id="@+id/ContactNumberUpdate"
+            android:layout_below="@+id/ContactNameUpdate"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:text="Number: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewForContactNumber"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/ContactNumberUpdate"
+            android:layout_alignBottom="@+id/ContactEmailUpdate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:text="Contact Email"
+            android:ems="8"
+            android:textSize="20dp"
+            android:id="@+id/ContactEmailUpdate"
+            android:layout_below="@+id/ContactNumberUpdate"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:text="Email: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewForContactEmail"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/ContactEmailUpdate"
+            android:layout_alignBottom="@+id/ContactAddressUpdate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:text="Contact Address"
+            android:ems="8"
+            android:textSize="20dp"
+            android:id="@+id/ContactAddressUpdate"
+
+            android:layout_below="@+id/ContactEmailUpdate"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        <TextView
+            android:text="Address: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewForContactAddress"
+            android:textSize="20dp"
+            android:layout_alignBaseline="@+id/ContactAddressUpdate"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <Button
+            android:text="Delete Contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DeleteContact"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        <Button
+            android:text="Back Button need value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/BackButton"
+            android:layout_above="@+id/DeleteContact"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="Update Contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/UpdateButton"
+            android:layout_above="@+id/BackButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+
+
+
+</LinearLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/activity_contact__manager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/antras"
+    android:background="@drawable/abstrac"
     tools:context="com.example.viktorija.contactreader.Contact_Manager">
 
     <TabHost
@@ -33,6 +33,18 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:id="@+id/tabContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:id="@+id/listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/tabCreator"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -44,8 +56,8 @@
                         android:layout_height="100dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="10dp"
-                        android:src="@drawable/user"
-                        app:srcCompat="@drawable/user" />
+                        android:src="@drawable/useruser"
+                        app:srcCompat="@drawable/useruser" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -133,18 +145,6 @@
                         android:layout_width="match_parent"
 
                         android:background="@color/blue"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/tabContact"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ListView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/listView" />
                 </LinearLayout>
 
             </FrameLayout>
