@@ -67,8 +67,7 @@ public class Contact_Manager extends Activity {
         TabHost.TabSpec
                 tabSpec = tabHost.newTabSpec("contact");
                 tabSpec.setContent(R.id.tabContact);
-                tabSpec.setIndicator("Contact's", getResources().getDrawable(R.color.editTextColor));
-
+                tabSpec.setIndicator("Contact's");
                 tabHost.addTab(tabSpec);
 
                 tabSpec = tabHost.newTabSpec("creator");
