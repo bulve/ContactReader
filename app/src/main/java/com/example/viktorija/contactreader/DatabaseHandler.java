@@ -129,8 +129,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int count = cursor.getCount();
         db.close();
         cursor.close();
-
+        if(count > 0)
         return count;
+        else
+            return 0;
     }
 
     public int updateContact(Contact contact){

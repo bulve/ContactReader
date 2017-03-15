@@ -8,8 +8,7 @@ import android.content.Intent;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -124,9 +123,10 @@ public class Contact_Manager extends Activity {
        List<Contact> allContactsAvailable = dbHandler.getAllContacts();
         int countContact = dbHandler.getContactCount();
         for(int i= 0; i < countContact; i++){
+
+
             Contacts.add(allContactsAvailable.get(i));
         }
-
         if(!allContactsAvailable.isEmpty())
             populateList();
 
