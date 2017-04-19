@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/activity_vertical_margin">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/contactName"
@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageViewContactListView"
         android:layout_toEndOf="@+id/imageViewContactListView"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:id="@+id/contactNumber"
@@ -26,15 +26,15 @@
         android:layout_height="wrap_content"
         android:text="Number"
         android:textSize="20dp"
-        android:layout_marginBottom="13dp"
         android:layout_alignBottom="@+id/imageViewContactListView"
         android:layout_alignLeft="@+id/contactName"
         android:layout_alignStart="@+id/contactName" />
 
     <ImageView
         android:id="@+id/imageViewContactListView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"

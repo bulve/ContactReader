@@ -47,8 +47,7 @@ public class InfoContact extends Activity {
 
 
 
-        // contact_name = (TextView) view.findViewById(R.id.ContactNameInfo);
-        //contact_name.setText(Integer.toString(contactID));
+
 
         contact = dbHandler.getContact(contactID);
 
@@ -79,6 +78,8 @@ public class InfoContact extends Activity {
             addressTextViewVisibility.setVisibility(View.GONE);
             contact_address.setVisibility(View.GONE);
         }
+        contact_image_uri = (ImageView) findViewById(R.id.imageUriOnInfo);
+        contact_image_uri.setImageURI(contact.getImageUri());
 
         contact_address.setOnClickListener(new View.OnClickListener() {
             @Override

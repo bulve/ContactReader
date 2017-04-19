@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3f51b5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#74b6b0</color>
+    <color name="colorPrimary">#abe7c8</color>
+    <color name="colorPrimaryDark">#B8B5F1</color>
+    <color name="colorAccent">#DBD9FF</color>
     <color name="blue">#5E92D2</color>
-    <color name="editTextColor">#74b6b0</color>
-    <color name="buttonColor">#8674b6b0</color>
+    <color name="editTextColor">#DBD9FF</color>
+    <color name="buttonColor">#6edbd9ff</color>
 </resources>

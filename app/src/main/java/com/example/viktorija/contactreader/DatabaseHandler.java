@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Viktorija on 2017-03-07
+ * Created by Aleksandras on 2017-03-07
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -35,34 +35,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*
-        Bandyta bet nesuveike ;/
 
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE ID NOT EXISTS" +
-                TABLE_CONTACTS + "("
-                + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_name
-                + " TEXT," + COLUMN_number + " INTEGER" + COLUMN_email + " TEXT" + COLUMN_address + " TEXT" +")";
-        db.execSQL(CREATE_CONTACTS_TABLE);
-
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_CONTACTS + "(" +
-                COLUMN_ID + "INTEGER PRIMARY KEY," +
-                COLUMN_name + " TEXT, " +
-                COLUMN_number + " INTEGER, " +
-                COLUMN_email + " TEXT, " +
-                COLUMN_address + " TEXT " +
-                ")");*/
-
-        //sitas veikia
-
-        /* senoji versija be image
-             DATABASE_NAME = "AllContact",
-             TABLE_CONTACTS = "ListContact",
-                db.execSQL("create table " + TABLE_CONTACTS + "("
-                + "id integer primary key autoincrement,"
-                + "name text,"
-                + "number integer,"
-                + "email text,"
-                + "address text" + ");"); */
 
         db.execSQL("create table " + TABLE_CONTACTS + "("
                 + "id integer primary key autoincrement,"
@@ -89,7 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COLUMN_email, contact.getEmail());
         values.put(COLUMN_address, contact.getAddress());
         //added for image
-        values.put(COLUMN_imageUri, String.valueOf(contact.getImageUri()));
+        values.put(COLUMN_imageUri, contact.getImageUri().toString());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -114,11 +87,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     Uri.parse(cursor.getString(5)));
         db.close();
         cursor.close();
-            return contact;
+        return contact;
 
     }
+
+
     public void deleteContact(Contact contact){
-        SQLiteDatabase db = getReadableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_CONTACTS, COLUMN_ID + "=?", new String[]{String.valueOf(contact.getId())});
         db.close();
     }
@@ -145,7 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(COLUMN_number, contact.getNumber());
         values.put(COLUMN_email, contact.getEmail());
         values.put(COLUMN_address, contact.getAddress());
-        //add image Uri ?
+        values.put(COLUMN_imageUri, contact.getImageUri().toString());
 
         return db.update(TABLE_CONTACTS, values, COLUMN_ID + "=?", new String[] {String.valueOf(contact.getId()) });
 
@@ -157,7 +132,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_CONTACTS;
 
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
 // looping through all rows and adding to list

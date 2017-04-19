@@ -3,18 +3,24 @@
     package="com.example.viktorija.contactreader">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
 
     <application
+        android:largeHeap="true"
+        android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:icon="@drawable/useruser"
-        android:label="@string/app_name"
         android:screenOrientation="portrait"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Contact_Manager">
+        <activity android:name=".FrontPageActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,12 +29,20 @@
         </activity>
         <activity
             android:name=".UpdateContact"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".InfoContact"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
 
+        <activity android:name=".Contact_Manager"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
 
+        </activity>
     </application>
 
 </manifest>

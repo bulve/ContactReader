@@ -1,21 +1,27 @@
 package com.example.viktorija.contactreader;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UpdateContact extends Activity {
     TextView contact_name, contact_number, contact_email,contact_address;
     ImageView contact_image_uri;
     private int contactID;
 
+    Uri contactImageUri;
+
     DatabaseHandler dbHandler;
     Contact contact;
+    Resources resources;
 
 
     @Override
@@ -29,12 +35,22 @@ public class UpdateContact extends Activity {
         dbHandler = new DatabaseHandler(this);
         contact = new Contact();
 
+        resources = this.getResources();
+         final Uri contactImageUriOnUpdate = new Uri.Builder()
+                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(resources.getResourcePackageName(R.drawable.useruser))
+                .appendPath(resources.getResourceTypeName(R.drawable.useruser))
+                .appendPath(resources.getResourceEntryName(R.drawable.useruser))
+                .build();
+
+
 
         contact = dbHandler.getContact(contactID);
 
         //Set image on update
-        //contact_image_uri = (ImageView) findViewById(R.id.imageUriOnInfo);
-        //contact_image_uri.setImageURI(contact.getImageUri());
+        contact_image_uri = (ImageView) findViewById(R.id.imageUriOnInfo);
+//        contact_image_uri.setImageURI(contact.getImageUri());
+
 
         contact_name = (TextView) findViewById(R.id.ContactNameUpdate);
         contact_name.setText(String.valueOf(contact.getName()));
@@ -54,10 +70,13 @@ public class UpdateContact extends Activity {
                 contact.setEmail(contact_email.getText().toString());
                 contact.setAddress(contact_address.getText().toString());
 
-                //To update image setting a new image or the same
-              //  contact.setImageUri(Uri.parse(contact_image_uri.toString()));  //I down know for sure ;/ or Uri.parse(String.valueOf(contact_image_uri));
+
+               // To update image setting a new image or the same
+              contact.setImageUri(contactImageUriOnUpdate);  //I down know for sure ;/ or Uri.parse(String.valueOf(contact_image_uri));
 
                 dbHandler.updateContact(contact);
+
+                Toast.makeText(getApplicationContext(), "Contact has been updated ", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(), Contact_Manager.class);
                 startActivity(intent);
@@ -86,7 +105,26 @@ public class UpdateContact extends Activity {
             }
         });
 
+/*        contact_image_uri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select image for your contact"), 1);
+            }
+        });
 
 
+
+    }
+
+    public void onActivityResult(int requestCode, int respondCode, Intent data){
+        if(respondCode == RESULT_OK){
+            if(requestCode == 1){
+                contactImageUri = data.getData();
+                contact_image_uri.setImageURI(data.getData());
+            }
+        }*/
     }
 }
