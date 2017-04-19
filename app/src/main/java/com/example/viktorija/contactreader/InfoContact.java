@@ -91,6 +91,17 @@ public class InfoContact extends Activity {
                 startActivity(intent);
             }
         });
+        contact_email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                intent.setData(Uri.parse("mailto:" + String.valueOf(contact.getEmail())));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
+        });
+
 
 
         contact_number.setOnClickListener(new View.OnClickListener() {
