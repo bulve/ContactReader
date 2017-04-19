@@ -104,6 +104,14 @@ public class InfoContact extends Activity {
 
 
 
+
+
+
+
+
+
+
+
         contact_number.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
